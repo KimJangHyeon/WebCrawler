@@ -22,7 +22,7 @@ def flush_data(new_data):
 def new_piazza():
     options = webdriver.ChromeOptions()
     options.add_argument('headless')
-    driver = webdriver.Chrome(Constants.DRIVER_PATH)#, chrome_options=options)
+    driver = webdriver.Chrome(Constants.DRIVER_PATH, chrome_options=options)
     driver.implicitly_wait(3)
     driver.get('https://piazza.com/school-search')
     driver.implicitly_wait(3)

@@ -11,7 +11,7 @@ from Commons import Constants
 from Info.FestaInfo import FestaInfo
 from Target.Send import send_fcm_notification
 from Crawler.models import FestaData, MyUser
-
+from time import sleep
 
 
 def get_url(base, target):
@@ -38,12 +38,13 @@ def parse_festa():
     festa_data = []
 
     html = driver.page_source
+    print(html)
     soup = BeautifulSoup(html, 'html.parser')
     title_list = soup.select('div > h3')
     time_list = soup.find_all('time')
     price_list = soup.select('a > div > div > span')
     url_list = soup.select('div > div > div > div > div > a')
-
+    print(len(title_list))
     for i in range(int(float(len(title_list)/2))):
         festa_info = FestaInfo(title_list[i].text, time_list[i].text, price_list[2 + 3*i].text, get_url(Constants.FESTA, url_list[i + 1]))
         festa_data.append(festa_info)
